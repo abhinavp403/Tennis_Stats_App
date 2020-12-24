@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Tennis Stats</string>
+    <string name="name">Name</string>
+    <string name="matches_won">Matches Won</string>
+    <string name="sets_won">Sets Won</string>
+    <string name="games_won">Games Won</string>
+    <string name="break_points_won">Break Points Won</string>
+    <string name="clean_sets">Clean Sets</string>
+    <string name="straight_sets">Straight Sets</string>
+    <string name="aces">Aces</string>
+    <string name="double_faults">Double Faults</string>
+    <string name="player_1">Player 1:</string>
+    <string name="search">Search</string>
+    <string name="player_2">Player 2:</string>
+    <string name="go">GO</string>
 </resources>

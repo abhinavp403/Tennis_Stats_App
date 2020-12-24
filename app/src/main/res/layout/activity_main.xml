@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -13,22 +14,17 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/ttt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Test "/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Player 1: "/>
+            android:text="@string/player_1"/>
 
         <EditText
             android:id="@+id/player1"
             android:layout_marginStart="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Search "/>
+            android:hint="@string/search"
+            android:inputType="text" />
     </LinearLayout>
 
     <LinearLayout
@@ -41,14 +37,303 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Player 2: "/>
+            android:text="@string/player_2"/>
 
         <EditText
             android:id="@+id/player2"
             android:layout_marginStart="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Search "/>
+            android:hint="@string/search"
+            android:inputType="text"/>
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button"
+        android:layout_below="@+id/tab2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:text="@string/go"
+        android:layout_centerHorizontal="true">
+    </Button>
+
+    <LinearLayout
+        android:id="@+id/tab3"
+        android:layout_below="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/name1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab4"
+        android:layout_below="@+id/tab3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:id="@+id/left"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/matches_won1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/sets_won1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/games_won1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/break_points_won1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/clean_sets1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/straight_sets1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/aces1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/double_fault1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/middle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/matches_won"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/matches_won"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/sets_won"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/sets_won"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/games_won"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/games_won"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/break_points_won"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/break_points_won"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/clean_sets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/clean_sets"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/straight_sets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/straight_sets"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/aces"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/aces"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/double_fault"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/double_faults"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/right"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/matches_won2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/sets_won2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/games_won2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/break_points_won2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/clean_sets2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/straight_sets2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/aces2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/double_fault2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>
