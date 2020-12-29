@@ -18,13 +18,15 @@
             android:layout_height="wrap_content"
             android:text="@string/player_1"/>
 
-        <EditText
-            android:id="@+id/player1"
-            android:layout_marginStart="5dp"
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/search"
-            android:inputType="text" />
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:inputType="textCapWords"
+            android:ems="10"
+            android:text=""/>
     </LinearLayout>
 
     <LinearLayout
@@ -39,13 +41,15 @@
             android:layout_height="wrap_content"
             android:text="@string/player_2"/>
 
-        <EditText
-            android:id="@+id/player2"
-            android:layout_marginStart="5dp"
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/search"
-            android:inputType="text"/>
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:inputType="textCapWords"
+            android:ems="10"
+            android:text="" />
     </LinearLayout>
 
     <Button
