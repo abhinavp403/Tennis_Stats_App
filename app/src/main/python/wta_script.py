@@ -103,17 +103,17 @@ def readfile(p1, p2, input_path, line_count):
 
 
 def main(entry1, entry2):
-    year = ""
-    if playerExist.isPlayerExistMale(entry1) is False or playerExist.isPlayerExistMale(entry2) is False:
+    year = "2019"
+    if playerExist.isPlayerExistFemale(entry1) is False or playerExist.isPlayerExistFemale(entry2) is False:
         print("Player not found")
         exit()
     line_count = 0
     if year != "" and int(year) in range(1968, 2021):
-        input_path = 'atp_matches_' + year + '.csv'
+        input_path = 'wta_matches_' + year + '.csv'
         player1stats, player2stats, line_count = readfile(entry1, entry2, input_path, line_count)
     else:
         for i in range(1968, 2021):
-            input_path = 'atp_matches_' + str(i) + '.csv'
+            input_path = 'wta_matches_' + str(i) + '.csv'
             player1stats, player2stats, line_count = readfile(entry1, entry2, input_path, line_count)
     entries = [player1stats, player2stats]
     return entries
