@@ -9,13 +9,13 @@
         android:roundIcon="@drawable/tennis_stats_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.TennisStats">
-        <activity android:name=".MainActivity">
+        <activity android:name=".FirstScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FirstScreenActivity" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

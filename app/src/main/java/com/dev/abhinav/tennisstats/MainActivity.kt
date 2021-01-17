@@ -2,13 +2,11 @@ package com.dev.abhinav.tennisstats
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
-import com.google.gson.Gson
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
@@ -57,72 +55,99 @@ class MainActivity : AppCompatActivity() {
         A2 = findViewById(R.id.aces2)
         DB2 = findViewById(R.id.double_fault2)
 
+        val yearArray = mutableListOf<Int>()
+        for(i in 1968..2020) {
+            yearArray.add(i)
+        }
+        val yearAdapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, yearArray)
+        val actv3 = findViewById<View>(R.id.autoCompleteTextView3) as AutoCompleteTextView
+        actv3.threshold = 1
+        actv3.setAdapter(yearAdapter)
+        actv3.setTextColor(Color.BLUE)
 
         if (!Python.isStarted()) {
             Python.start(AndroidPlatform(this))
         }
         val python = Python.getInstance()
 
-//        when(intent.getStringExtra("click")) {
-//            "atp" -> {
-//                val pythonFile = python.getModule("playerNames")
-//                val obj = pythonFile.callAttr("malePlayers")
-//                val array = obj.toJava(Array::class.java)
-//                val adapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, array)
-//                val actv1 = findViewById<View>(R.id.autoCompleteTextView1) as AutoCompleteTextView
-//                actv1.threshold = 3
-//                actv1.setAdapter(adapter)
-//                actv1.setTextColor(Color.BLUE)
-//                val actv2 = findViewById<View>(R.id.autoCompleteTextView2) as AutoCompleteTextView
-//                actv2.threshold = 3
-//                actv2.setAdapter(adapter)
-//                actv2.setTextColor(Color.BLUE)
-//                button.setOnClickListener {
-//                    getATP(actv1, actv2)
-//                }
-//            }
-//        }
-        val pythonFile = python.getModule("playerNames")
-        val obj = pythonFile.callAttr("malePlayers")
-        val array = obj.toJava(Array::class.java)
-        val adapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, array)
-        val actv1 = findViewById<View>(R.id.autoCompleteTextView1) as AutoCompleteTextView
-        actv1.threshold = 3
-        actv1.setAdapter(adapter)
-        actv1.setTextColor(Color.BLUE)
-        val actv2 = findViewById<View>(R.id.autoCompleteTextView2) as AutoCompleteTextView
-        actv2.threshold = 3
-        actv2.setAdapter(adapter)
-        actv2.setTextColor(Color.BLUE)
-        button.setOnClickListener {
-            getATP(actv1, actv2)
+        when(intent.getStringExtra("click")) {
+            "atp" -> {
+                val pythonFile = python.getModule("playerNames")
+                val obj = pythonFile.callAttr("malePlayers")
+                val array = obj.toJava(Array::class.java)
+                val adapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, array)
+                val actv1 = findViewById<View>(R.id.autoCompleteTextView1) as AutoCompleteTextView
+                actv1.threshold = 3
+                actv1.setAdapter(adapter)
+                actv1.setTextColor(Color.BLUE)
+                val actv2 = findViewById<View>(R.id.autoCompleteTextView2) as AutoCompleteTextView
+                actv2.threshold = 3
+                actv2.setAdapter(adapter)
+                actv2.setTextColor(Color.BLUE)
+                button.setOnClickListener {
+                    getATP(actv1, actv2, actv3)
+                }
+            }
+            "wta" -> {
+                val pythonFile = python.getModule("playerNames")
+                val obj = pythonFile.callAttr("femalePlayers")
+                val array = obj.toJava(Array::class.java)
+                val adapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, array)
+                val actv1 = findViewById<View>(R.id.autoCompleteTextView1) as AutoCompleteTextView
+                actv1.threshold = 3
+                actv1.setAdapter(adapter)
+                actv1.setTextColor(Color.BLUE)
+                val actv2 = findViewById<View>(R.id.autoCompleteTextView2) as AutoCompleteTextView
+                actv2.threshold = 3
+                actv2.setAdapter(adapter)
+                actv2.setTextColor(Color.BLUE)
+                button.setOnClickListener {
+                    getWTA(actv1, actv2, actv3)
+                }
+            }
         }
     }
 
-    private fun getATP(actv1: AutoCompleteTextView, actv2: AutoCompleteTextView) {
+    private fun getATP(actv1: AutoCompleteTextView, actv2: AutoCompleteTextView, actv3: AutoCompleteTextView) {
         val python = Python.getInstance()
         val pythonFile = python.getModule("atp_script")
-        val obj = pythonFile.callAttr("main", actv1.text.toString(), actv2.text.toString())
-        val list = obj.asList()
-        val leftScore = list[0].toString()
-        val rightScore = list[1].toString()
-        parseJSON(leftScore, "left")
-        parseJSON(rightScore, "right")
-        nameLeft.text = actv1.text.toString()
-        nameRight.text = actv2.text.toString()
+        val obj = pythonFile.callAttr("main", actv1.text.toString(), actv2.text.toString(), actv3.text.toString())
+        if(obj.toString() == "Player Not Found") {
+            Toast.makeText(this, "Player Not Found", Toast.LENGTH_LONG).show()
+        } else if(obj.toString() == "Enter Both Player Names") {
+            Toast.makeText(this, "Enter Both Player Names", Toast.LENGTH_LONG).show()
+        } else if(obj.toString() == "No Record") {
+            Toast.makeText(this, "No Record for " + actv3.text.toString(), Toast.LENGTH_LONG).show()
+        } else {
+            val list = obj.asList()
+            val leftScore = list[0].toString()
+            val rightScore = list[1].toString()
+            parseJSON(leftScore, "left")
+            parseJSON(rightScore, "right")
+            nameLeft.text = actv1.text.toString()
+            nameRight.text = actv2.text.toString()
+        }
     }
 
-    private fun getWTA(actv1: AutoCompleteTextView, actv2: AutoCompleteTextView) {
+    private fun getWTA(actv1: AutoCompleteTextView, actv2: AutoCompleteTextView, actv3: AutoCompleteTextView) {
         val python = Python.getInstance()
         val pythonFile = python.getModule("wta_script")
-        val obj = pythonFile.callAttr("main", actv1.text.toString(), actv2.text.toString())
-        val list = obj.asList()
-        val leftScore = list[0].toString()
-        val rightScore = list[1].toString()
-        parseJSON(leftScore, "left")
-        parseJSON(rightScore, "right")
-        nameLeft.text = actv1.text.toString()
-        nameRight.text = actv2.text.toString()
+        val obj = pythonFile.callAttr("main", actv1.text.toString(), actv2.text.toString(), actv3.text.toString())
+        if(obj.toString() == "Player Not Found") {
+            Toast.makeText(this, "Player Not Found", Toast.LENGTH_LONG).show()
+        } else if(obj.toString() == "Enter Both Player Names") {
+            Toast.makeText(this, "Enter Both Player Names", Toast.LENGTH_LONG).show()
+        } else if(obj.toString() == "No Record") {
+            Toast.makeText(this, "No Record for " + actv3.text.toString(), Toast.LENGTH_LONG).show()
+        } else {
+            val list = obj.asList()
+            val leftScore = list[0].toString()
+            val rightScore = list[1].toString()
+            parseJSON(leftScore, "left")
+            parseJSON(rightScore, "right")
+            nameLeft.text = actv1.text.toString()
+            nameRight.text = actv2.text.toString()
+        }
     }
 
     private fun parseJSON(score: String, side: String) {
@@ -158,5 +183,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 }

@@ -3,11 +3,6 @@ import re
 import playerExist
 from os.path import dirname, join
 
-player1 = {"matches-won": 0, "sets-won": 0, "games-won": 0, "breakpts-won": 0, "clean-sets": 0, "straight-sets": 0, "aces": 0, "doublefaults": 0}
-player2 = {"matches-won": 0, "sets-won": 0, "games-won": 0, "breakpts-won": 0, "clean-sets": 0, "straight-sets": 0, "aces": 0, "doublefaults": 0}
-win = {"sets-won": 0, "games-won": 0, "clean-sets": 0, "straight-sets": 0}
-lose = {"sets-won": 0, "games-won": 0, "clean-sets": 0, "straight-sets": 0}
-
 
 def breakdownscore(score):
     winner = {"sets-won": 0, "games-won": 0, "clean-sets": 0, "straight-sets": 0}
@@ -36,7 +31,7 @@ def breakdownscore(score):
     return winner["sets-won"], winner["games-won"], winner["clean-sets"], winner["straight-sets"], loser["sets-won"], loser["games-won"], loser["clean-sets"], loser["straight-sets"]
 
 
-def readfile(p1, p2, input_path, line_count):
+def readfile(p1, p2, input_path, line_count, player1, player2, win, lose):
     with open(join(dirname(__file__), input_path), mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
@@ -102,18 +97,24 @@ def readfile(p1, p2, input_path, line_count):
         return player1, player2, line_count
 
 
-def main(entry1, entry2):
-    year = ""
+def main(entry1, entry2, year):
+    player1 = {"matches-won": 0, "sets-won": 0, "games-won": 0, "breakpts-won": 0, "clean-sets": 0, "straight-sets": 0, "aces": 0, "doublefaults": 0}
+    player2 = {"matches-won": 0, "sets-won": 0, "games-won": 0, "breakpts-won": 0, "clean-sets": 0, "straight-sets": 0, "aces": 0, "doublefaults": 0}
+    win = {"sets-won": 0, "games-won": 0, "clean-sets": 0, "straight-sets": 0}
+    lose = {"sets-won": 0, "games-won": 0, "clean-sets": 0, "straight-sets": 0}
+    if entry1 == "" or entry2 == "":
+        return "Enter Both Player Names"
     if playerExist.isPlayerExistMale(entry1) is False or playerExist.isPlayerExistMale(entry2) is False:
-        print("Player not found")
-        exit()
+        return "Player Not Found"
+    if year != "" and (int(year) < 1968 or int(year) > 2020):
+        return "No Record"
     line_count = 0
     if year != "" and int(year) in range(1968, 2021):
         input_path = 'atp_matches_' + year + '.csv'
-        player1stats, player2stats, line_count = readfile(entry1, entry2, input_path, line_count)
+        player1stats, player2stats, line_count = readfile(entry1, entry2, input_path, line_count, player1, player2, win, lose)
     else:
         for i in range(1968, 2021):
             input_path = 'atp_matches_' + str(i) + '.csv'
-            player1stats, player2stats, line_count = readfile(entry1, entry2, input_path, line_count)
+            player1stats, player2stats, line_count = readfile(entry1, entry2, input_path, line_count, player1, player2, win, lose)
     entries = [player1stats, player2stats]
     return entries

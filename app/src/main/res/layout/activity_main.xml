@@ -52,9 +52,32 @@
             android:text="" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/tab3"
+        android:layout_below="@+id/tab2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="54dp"
+            android:layout_height="wrap_content"
+            android:text="@string/year" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:inputType="number"
+            android:ems="10"
+            android:text="" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/button"
-        android:layout_below="@+id/tab2"
+        android:layout_below="@+id/tab3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
@@ -63,7 +86,7 @@
     </Button>
 
     <LinearLayout
-        android:id="@+id/tab3"
+        android:id="@+id/tab4"
         android:layout_below="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -74,7 +97,7 @@
             android:id="@+id/name1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/name"
+            android:text="@string/player1"
             android:textStyle="bold"
             android:textSize="20sp"
             android:textAlignment="center"
@@ -84,7 +107,7 @@
             android:id="@+id/name2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/name"
+            android:text="@string/player2"
             android:textStyle="bold"
             android:textSize="20sp"
             android:textAlignment="center"
@@ -93,8 +116,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/tab4"
-        android:layout_below="@+id/tab3"
+        android:id="@+id/tab5"
+        android:layout_below="@+id/tab4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
