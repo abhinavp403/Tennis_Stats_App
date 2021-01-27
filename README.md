@@ -14,5 +14,5 @@ Libraries used:
 
 Data provided courtesy of https://github.com/JeffSackmann/tennis_atp, https://github.com/JeffSackmann/tennis_wta
 
-Check it out on the playstore!
+Check it out on the playstore!  
 https://play.google.com/store/apps/details?id=com.dev.abhinav.tennisstats
