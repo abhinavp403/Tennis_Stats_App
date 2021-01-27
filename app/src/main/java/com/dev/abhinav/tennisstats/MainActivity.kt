@@ -65,6 +65,13 @@ class MainActivity : AppCompatActivity() {
         actv3.setAdapter(yearAdapter)
         actv3.setTextColor(Color.BLUE)
 
+        val courtArray = listOf("Hard", "Clay", "Grass")
+        val courtAdapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, courtArray)
+        val actv4 = findViewById<View>(R.id.autoCompleteTextView4) as AutoCompleteTextView
+        actv4.threshold = 1
+        actv4.setAdapter(courtAdapter)
+        actv4.setTextColor(Color.BLUE)
+
         if (!Python.isStarted()) {
             Python.start(AndroidPlatform(this))
         }
@@ -85,7 +92,7 @@ class MainActivity : AppCompatActivity() {
                 actv2.setAdapter(adapter)
                 actv2.setTextColor(Color.BLUE)
                 button.setOnClickListener {
-                    getATP(actv1, actv2, actv3)
+                    getATP(actv1, actv2, actv3, actv4)
                 }
             }
             "wta" -> {
@@ -102,22 +109,24 @@ class MainActivity : AppCompatActivity() {
                 actv2.setAdapter(adapter)
                 actv2.setTextColor(Color.BLUE)
                 button.setOnClickListener {
-                    getWTA(actv1, actv2, actv3)
+                    getWTA(actv1, actv2, actv3, actv4)
                 }
             }
         }
     }
 
-    private fun getATP(actv1: AutoCompleteTextView, actv2: AutoCompleteTextView, actv3: AutoCompleteTextView) {
+    private fun getATP(actv1: AutoCompleteTextView, actv2: AutoCompleteTextView, actv3: AutoCompleteTextView, actv4: AutoCompleteTextView) {
         val python = Python.getInstance()
         val pythonFile = python.getModule("atp_script")
-        val obj = pythonFile.callAttr("main", actv1.text.toString(), actv2.text.toString(), actv3.text.toString())
+        val obj = pythonFile.callAttr("main", actv1.text.toString(), actv2.text.toString(), actv3.text.toString(), actv4.text.toString())
         if(obj.toString() == "Player Not Found") {
             Toast.makeText(this, "Player Not Found", Toast.LENGTH_LONG).show()
         } else if(obj.toString() == "Enter Both Player Names") {
             Toast.makeText(this, "Enter Both Player Names", Toast.LENGTH_LONG).show()
         } else if(obj.toString() == "No Record") {
             Toast.makeText(this, "No Record for " + actv3.text.toString(), Toast.LENGTH_LONG).show()
+        } else if(obj.toString() == "No Such Surface") {
+            Toast.makeText(this, "No Such Surface", Toast.LENGTH_LONG).show()
         } else {
             val list = obj.asList()
             val leftScore = list[0].toString()
@@ -129,16 +138,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getWTA(actv1: AutoCompleteTextView, actv2: AutoCompleteTextView, actv3: AutoCompleteTextView) {
+    private fun getWTA(actv1: AutoCompleteTextView, actv2: AutoCompleteTextView, actv3: AutoCompleteTextView, actv4: AutoCompleteTextView) {
         val python = Python.getInstance()
         val pythonFile = python.getModule("wta_script")
-        val obj = pythonFile.callAttr("main", actv1.text.toString(), actv2.text.toString(), actv3.text.toString())
+        val obj = pythonFile.callAttr("main", actv1.text.toString(), actv2.text.toString(), actv3.text.toString(), actv4.text.toString())
         if(obj.toString() == "Player Not Found") {
             Toast.makeText(this, "Player Not Found", Toast.LENGTH_LONG).show()
         } else if(obj.toString() == "Enter Both Player Names") {
             Toast.makeText(this, "Enter Both Player Names", Toast.LENGTH_LONG).show()
         } else if(obj.toString() == "No Record") {
             Toast.makeText(this, "No Record for " + actv3.text.toString(), Toast.LENGTH_LONG).show()
+        } else if(obj.toString() == "No Such Surface") {
+            Toast.makeText(this, "No Such Surface", Toast.LENGTH_LONG).show()
         } else {
             val list = obj.asList()
             val leftScore = list[0].toString()
