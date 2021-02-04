@@ -60,21 +60,6 @@ class FirstScreenActivity : AppCompatActivity() {
             builder.setPositiveButton("OK") { dialog, _ ->
                 dialog.dismiss()
                 val msg = textBox.text.toString()
-
-//                val to = arrayOf("abhinavp403@gmail.com")
-//                val emailIntent = Intent(Intent.ACTION_SEND)
-//                emailIntent.data = Uri.parse("mailto:")
-//                emailIntent.type = "text/plain"
-//                emailIntent.putExtra(Intent.EXTRA_EMAIL, to)
-//                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Tennis Stats App Feedback")
-//                emailIntent.putExtra(Intent.EXTRA_TEXT, msg)
-//                startActivity(Intent.createChooser(emailIntent, "Sent!"))
-//                finish()
-
-//                val smsManager: SmsManager = SmsManager.getDefault()
-//                smsManager.sendTextMessage("+14138014305", null, msg, null, null)
-//                Toast.makeText(applicationContext, "Message Sent", Toast.LENGTH_LONG).show()
-
                   sendSMS("+14138014305", msg)
             }
             builder.setNegativeButton("Cancel") { dialog, _ ->
@@ -86,8 +71,8 @@ class FirstScreenActivity : AppCompatActivity() {
     }
 
     private fun sendSMS(phoneNumber: String, message: String) {
-        val SENT: String = "SMS_SENT"
-        val DELIVERED: String = "SMS_DELIVERED"
+        val SENT = "SMS_SENT"
+        val DELIVERED = "SMS_DELIVERED"
 
         val sentPI = PendingIntent.getBroadcast(this, 0, Intent(SENT), 0)
         val deliveredPI = PendingIntent.getBroadcast(this, 0, Intent(DELIVERED), 0)
@@ -130,7 +115,6 @@ class FirstScreenActivity : AppCompatActivity() {
             }
         }
         registerReceiver(broadCastSender, IntentFilter(DELIVERED))
-
         val sms = SmsManager.getDefault()
         sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI)
     }
