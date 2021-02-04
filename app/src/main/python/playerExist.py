@@ -5,8 +5,8 @@ def isPlayerExistMale(name):
     with open(join(dirname(__file__), 'atp_players.csv'), mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
-        if name == row["firstname"] + " " + row["lastname"]:
-            return True
+            if name == row["firstname"] + " " + row["lastname"]:
+                return True
     return False
 
 

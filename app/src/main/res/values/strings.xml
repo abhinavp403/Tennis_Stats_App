@@ -16,4 +16,5 @@
     <string name="go">GO</string>
     <string name="year">Year:</string>
     <string name="court">Court:</string>
+    <string name="send_feedback"><u>Send Feedback</u></string>
 </resources>
