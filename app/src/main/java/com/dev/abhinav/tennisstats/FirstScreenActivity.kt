@@ -51,7 +51,7 @@ class FirstScreenActivity : AppCompatActivity() {
         }
 
         feedback.setOnClickListener {
-            smsPermission()
+            //smsPermission()
             val builder = AlertDialog.Builder(this)
             builder.setMessage("Send Feedback")
             val dialogLayout: View = layoutInflater.inflate(R.layout.feedback_dialog, null)
@@ -60,7 +60,16 @@ class FirstScreenActivity : AppCompatActivity() {
             builder.setPositiveButton("OK") { dialog, _ ->
                 dialog.dismiss()
                 val msg = textBox.text.toString()
-                  sendSMS("+14138014305", msg)
+                //sendSMS("+14138014305", msg)
+                val to: String = "abhinavp403@gmail.com"
+                val subject: String = "Tennis Stats - ATP & WTA Feedback"
+                val message: String = msg
+                val email = Intent(Intent.ACTION_SEND)
+                email.putExtra(Intent.EXTRA_EMAIL, arrayOf(to))
+                email.putExtra(Intent.EXTRA_SUBJECT, subject)
+                email.putExtra(Intent.EXTRA_TEXT, message)
+                email.type = "message/rfc822"
+                startActivity(Intent.createChooser(email, "Choose an Email client :"))
             }
             builder.setNegativeButton("Cancel") { dialog, _ ->
                 dialog.cancel()

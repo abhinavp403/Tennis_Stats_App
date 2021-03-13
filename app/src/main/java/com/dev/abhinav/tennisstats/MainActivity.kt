@@ -167,8 +167,8 @@ class MainActivity : AppCompatActivity() {
         val setsWon = jsonObj.getInt("sets-won")
         val gamesWon = jsonObj.getInt("games-won")
         val breakptsWon = jsonObj.getInt("breakpts-won")
-        val straightSets = jsonObj.getInt("clean-sets")
-        val cleanSets = jsonObj.getInt("straight-sets")
+        val cleanSets = jsonObj.getInt("clean-sets")
+        val straightSets = jsonObj.getInt("straight-sets")
         val aces = jsonObj.getInt("aces")
         val doubleFaults = jsonObj.getInt("doublefaults")
         when(side) {
