@@ -11,6 +11,8 @@ Python script derives the essential information from the spreadsheet database an
 Libraries used:
 1) Chaqoupy (Integrates python scripts in Android Studio IDE)
 2) Python Community Plugin (Editing .py files)
+3) Dexter (For permissions)
+4) Broadcast Recievers
 
 Data provided courtesy of https://github.com/JeffSackmann/tennis_atp, https://github.com/JeffSackmann/tennis_wta
 
