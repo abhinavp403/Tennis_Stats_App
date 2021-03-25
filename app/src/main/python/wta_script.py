@@ -12,8 +12,8 @@ def breakdownscore(score):
         c = s.split('-')
         if c.__contains__('RETD') or c.__contains__('RET'):
             break
-        c[0] = int(re.sub(r'\(\d\)', '', c[0]))
-        c[1] = int(re.sub(r'\(\d\)', '', c[1]))
+        c[0] = int(re.sub(r'\(\d*\)', '', c[0]))
+        c[1] = int(re.sub(r'\(\d*\)', '', c[1]))
         if c[0] > c[1]:
             winner["sets-won"] += 1
             winner["games-won"] += c[0]
